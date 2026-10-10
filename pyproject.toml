@@ -1,6 +1,6 @@
 [project]
 name = "directory-difference"
-version = "0.1.1"
+version = "0.1.2"
 description = "Compares two directories and reports added, removed, and modified files by content hash."
 requires-python = ">=3.10"
 dependencies = []

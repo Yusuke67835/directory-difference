@@ -47,3 +47,10 @@ File modification times lie. A deploy tool that copies a tree may reset mtimes, 
 Symlinks are skipped. Only regular files are hashed. If you have a symlink in one tree and a real file with the same name in the other, neither will appear in the diff — the symlink is invisible to the walker, and the real file has no counterpart to compare against. If you need symlink awareness, build a separate comparator rather than relying on this one to guess.
 
 The `relative_path` uses OS-native separators (`\` on Windows, `/` elsewhere). Normalize yourself if you need cross-platform stable keys.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
